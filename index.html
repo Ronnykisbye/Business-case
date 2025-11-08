@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>Kisbye Consulting – BusinessCaseGPT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; background:#f5f5f5; padding: 30px; }
+    .page { max-width: 750px; margin: 0 auto; background:#fff; padding: 28px 32px; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,.05); }
+    h1 { margin-top: 0; }
+    .btn { display:inline-block; background:#0d6efd; color:#fff; padding:12px 18px; border-radius:8px; text-decoration:none; font-weight:600; }
+    .btn-secondary { background:#6c757d; }
+    .btn:hover { opacity:.9; }
+    code { background:#eef; padding:2px 4px; border-radius:4px; }
+    ul { line-height:1.6; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Kisbye Consulting – BusinessCaseGPT</h1>
+    <p>Vælg den løsning der passer til dig:</p>
+
+    <h2>1. Brug den færdige EXE (ingen Python nødvendig)</h2>
+    <p>
+      <a class="btn"
+         href="https://www.dropbox.com/scl/fi/hzos4uwdrnwy61wmyui9k/BusinessCaseGPT.exe?rlkey=twn8sde2bxvmdvetbd7yjk8is&st=t1ogq1gh&dl=1"
+         target="_blank">
+         ⬇️ Download BusinessCaseGPT.exe (Dropbox)
+      </a>
+    </p>
+    <p>Gem filen på din pc og dobbeltklik. Browseren åbner på <code>http://127.0.0.1:5000</code>.</p>
+
+    <h2>2. Jeg har Python – jeg vil køre .py</h2>
+    <p>
+      <a class="btn btn-secondary" href="businesscasegpt_v9_0_web.py">⬇️ Download Python-version (.py)</a>
+    </p>
+    <p>Kør den i en terminal:</p>
+    <pre>python businesscasegpt_v9_0_web.py</pre>
+    <p>Gå derefter til <code>http://127.0.0.1:5000</code>.</p>
+
+    <h2>3. Hvad gør programmet?</h2>
+    <ul>
+      <li>Viser en formular i browseren</li>
+      <li>Du indtaster procesnavn, tid, frekvens, løn m.m.</li>
+      <li>Du kan også uploade JSON eller et udfyldt Word-spørgeskema</li>
+      <li>Der bliver lavet 3 filer i mappen <code>output</code>:
+        <ul>
+          <li>Excel med beregninger</li>
+          <li>Word – PDD/RTS</li>
+          <li>Word – Ledelsesbeskrivelse</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>Hvis du deler dette repo med andre, skal de bare: 1) hente EXE’en, 2) dobbeltklikke, 3) udfylde formularen.</p>
+  </div>
+</body>
+</html>
