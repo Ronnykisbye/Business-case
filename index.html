@@ -8,7 +8,7 @@
     body { font-family: Arial, sans-serif; background:#f5f5f5; padding: 30px; }
     .page { max-width: 750px; margin: 0 auto; background:#fff; padding: 28px 32px; border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,.05); }
     h1 { margin-top: 0; }
-    .btn { display:inline-block; background:#0d6efd; color:#fff; padding:12px 18px; border-radius:8px; text-decoration:none; font-weight:600; }
+    .btn { display:inline-block; background:#0d6efd; color:#fff; padding:12px 18px; border-radius:8px; text-decoration:none; font-weight:600; cursor:pointer; }
     .btn-secondary { background:#6c757d; }
     .btn:hover { opacity:.9; }
     code { background:#eef; padding:2px 4px; border-radius:4px; }
@@ -22,20 +22,59 @@
 
     <h2>1. Brug den færdige EXE (ingen Python nødvendig)</h2>
     <p>
-      <a class="btn"
-         href="https://www.dropbox.com/scl/fi/hzos4uwdrnwy61wmyui9k/BusinessCaseGPT.exe?rlkey=twn8sde2bxvmdvetbd7yjk8is&st=t1ogq1gh&dl=1"
-         target="_blank">
-         ⬇️ Download BusinessCaseGPT.exe (Dropbox)
-      </a>
+      <a id="btn-exe" class="btn">⬇️ Download BusinessCaseGPT.exe (Dropbox)</a>
     </p>
     <p>Gem filen på din pc og dobbeltklik. Browseren åbner på <code>http://127.0.0.1:5000</code>.</p>
 
     <h2>2. Jeg har Python – jeg vil køre .py</h2>
     <p>
-      <a class="btn btn-secondary" href="businesscasegpt_v9_0_web.py">⬇️ Download Python-version (.py)</a>
+      <a id="btn-py" class="btn btn-secondary">⬇️ Download Python-version (.py)</a>
     </p>
     <p>Kør den i en terminal:</p>
     <pre>python businesscasegpt_v9_0_web.py</pre>
     <p>Gå derefter til <code>http://127.0.0.1:5000</code>.</p>
 
-    <h2>3. Hvad gør programmet?</h2
+    <h2>3. Hvad gør programmet?</h2>
+    <ul>
+      <li>Viser en formular i browseren</li>
+      <li>Du indtaster procesnavn, tid, frekvens, løn m.m.</li>
+      <li>Du kan også uploade JSON eller et udfyldt Word-spørgeskema</li>
+      <li>Der bliver lavet 3 filer i mappen <code>output</code>:
+        <ul>
+          <li>Excel med beregninger</li>
+          <li>Word – PDD/RTS</li>
+          <li>Word – Ledelsesbeskrivelse</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>4. Supplerende dokument</h2>
+    <p>Dokumentet kan også hentes alene her:</p>
+    <p>
+      <a class="btn btn-secondary"
+         href="https://raw.githubusercontent.com/Ronnykisbye/Business-case/main/Forside_BusinessCaseGPT.docx">
+         📄 Download Forside_BusinessCaseGPT.docx
+      </a>
+    </p>
+  </div>
+
+  <script>
+    // links vi bruger flere steder
+    const exeUrl = "https://www.dropbox.com/scl/fi/hzos4uwdrnwy61wmyui9k/BusinessCaseGPT.exe?rlkey=twn8sde2bxvmdvetbd7yjk8is&st=t1ogq1gh&dl=1";
+    const pyUrl  = "businesscasegpt_v9_0_web.py";
+    const docxUrl = "https://raw.githubusercontent.com/Ronnykisbye/Business-case/main/Forside_BusinessCaseGPT.docx";
+
+    // når man klikker på EXE → åbn EXE + DOCX
+    document.getElementById("btn-exe").addEventListener("click", function() {
+      window.open(exeUrl, "_blank");
+      window.open(docxUrl, "_blank");
+    });
+
+    // når man klikker på PY → åbn PY + DOCX
+    document.getElementById("btn-py").addEventListener("click", function() {
+      window.open(pyUrl, "_blank");
+      window.open(docxUrl, "_blank");
+    });
+  </script>
+</body>
+</html>
