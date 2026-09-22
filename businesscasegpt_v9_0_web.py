@@ -15,7 +15,7 @@ from datetime import datetime
 
 from flask import (
     Flask, request, render_template_string, send_from_directory,
-    Response, jsonify, url_for
+    Response, jsonify, url_for, abort
 )
 
 from openpyxl import Workbook
@@ -46,6 +46,7 @@ LOGO_PNG_SOURCE = "kisbye_logo.png"
 LOGO_ICO_SOURCE = "kisbye_logo.ico"
 
 app = Flask(__name__, static_folder="static")
+app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # maks. 10 MB upload
 
 last_ping = time.time()  # til idle-killer
 
@@ -824,6 +825,10 @@ document.getElementById("exitBtn").addEventListener("click", async ()=>{
 def no_cache(resp):
     resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     resp.headers["Pragma"] = "no-cache"
+    resp.headers["X-Content-Type-Options"] = "nosniff"
+    resp.headers["X-Frame-Options"] = "DENY"
+    resp.headers["Referrer-Policy"] = "no-referrer"
+    resp.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     return resp
 
 
@@ -988,6 +993,14 @@ def download_file(filename):
 
 @app.route("/shutdown", methods=["POST"])
 def shutdown():
+    # Beskyt den lokale shutdown-route mod cross-site requests fra andre websider.
+    origin = request.headers.get("Origin")
+    if origin and origin not in {"http://127.0.0.1:5000", "http://localhost:5000"}:
+        abort(403)
+    fetch_site = request.headers.get("Sec-Fetch-Site")
+    if fetch_site and fetch_site not in {"same-origin", "none"}:
+        abort(403)
+
     def delayed():
         time.sleep(0.3)
         os._exit(0)
